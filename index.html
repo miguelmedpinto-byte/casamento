@@ -103,39 +103,56 @@
     padding-top: 52px;
   }
 
-  /* Photo block — small elegant centred frame */
+  /* Mobile: full-width landscape photo */
   .hero-photo-outer {
     display: flex; justify-content: center;
-    padding: 36px 24px 0;
+    padding: 0;
     background: var(--cream);
   }
   .hero-photo-wrap {
     position: relative;
-    width: clamp(260px, 70vw, 520px);
-    aspect-ratio: 3/4;
+    width: 100%;
+    aspect-ratio: 4/3;
     background: #d8cfc0;
     overflow: hidden;
-    border: 1px solid rgba(184,150,46,0.3);
-    box-shadow: 0 8px 40px rgba(92,61,30,0.12), 0 2px 8px rgba(92,61,30,0.08);
+    border: none;
+    box-shadow: none;
   }
   /* Double gold frame inset */
   .hero-photo-wrap::before {
     content: '';
-    position: absolute; inset: 8px;
+    position: absolute; inset: 10px;
     border: 1px solid rgba(184,150,46,0.35);
     z-index: 2; pointer-events: none;
   }
   .hero-photo-wrap::after {
     content: '';
-    position: absolute; inset: 11px;
+    position: absolute; inset: 14px;
     border: 1px solid rgba(184,150,46,0.15);
     z-index: 2; pointer-events: none;
   }
   .hero-photo {
     width: 100%; height: 100%;
-    object-fit: cover; display: block;
+    object-fit: cover; object-position: center top;
+    display: block;
   }
   #hero-file { display: none; }
+
+  /* Desktop: restore centred portrait frame */
+  @media (min-width: 640px) {
+    .hero-photo-outer {
+      padding: 36px 24px 0;
+    }
+    .hero-photo-wrap {
+      width: clamp(260px, 70vw, 520px);
+      aspect-ratio: 3/4;
+      border: 1px solid rgba(184,150,46,0.3);
+      box-shadow: 0 8px 40px rgba(92,61,30,0.12), 0 2px 8px rgba(92,61,30,0.08);
+    }
+    .hero-photo {
+      object-position: center center;
+    }
+  }
 
   /* Illustration strip */
   .hero-illustration {
